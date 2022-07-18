@@ -9,20 +9,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import uz.javokhirdev.photoplay.auth.domain.repository.AuthRepository
-import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
 import javax.inject.Inject
 
 @HiltViewModel
 class ForgotViewModel @Inject constructor(
-    preferences: Preferences,
     private val repository: AuthRepository,
 ) : ViewModel() {
 
     val uiState = MutableStateFlow(ForgotState())
-
-    init {
-        preferences.saveShouldShowLogin(true)
-    }
 
     fun handleEvent(event: ForgotEvent) {
         when (event) {

@@ -15,6 +15,7 @@ import coil.annotation.ExperimentalCoilApi
 import dagger.hilt.android.AndroidEntryPoint
 import uz.javokhirdev.photoplay.auth.presentation.forgot.ForgotPasswordScreen
 import uz.javokhirdev.photoplay.auth.presentation.login.LoginScreen
+import uz.javokhirdev.photoplay.auth.presentation.register.RegisterScreen
 import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
 import uz.javokhirdev.photoplay.navigation.Route
 import uz.javokhirdev.photoplay.ui.theme.CaloryTrackerTheme
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = if (shouldShowLogin) {
-                            Route.FORGOT_PASSWORD
+                            Route.REGISTER
                         } else {
                             Route.HOME
                         }
@@ -54,7 +55,7 @@ class MainActivity : ComponentActivity() {
                             LoginScreen()
                         }
                         composable(Route.REGISTER) {
-
+                            RegisterScreen()
                         }
                         composable(Route.FORGOT_PASSWORD) {
                             ForgotPasswordScreen()
