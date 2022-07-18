@@ -1,5 +1,8 @@
 package uz.javokhirdev.photoplay.auth.presentation.components
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
@@ -11,8 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusState
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -30,9 +31,7 @@ import uz.javokhirdev.photoplay.coreui.LocalSpacing
 fun PasswordInput(
     modifier: Modifier = Modifier,
     password: String,
-    onPasswordChanged: (String) -> Unit,
-    shouldShowHint: Boolean = false,
-    onFocusChanged: (FocusState) -> Unit = {}
+    onPasswordChanged: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
@@ -43,7 +42,7 @@ fun PasswordInput(
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onBackground
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(spacing.spaceSmall))
         Box(modifier = Modifier.fillMaxWidth()) {
             BasicTextField(
                 value = password,
@@ -64,8 +63,7 @@ fun PasswordInput(
                     .padding(
                         horizontal = 16.dp,
                         vertical = 12.dp
-                    )
-                    .onFocusChanged { onFocusChanged(it) },
+                    ),
                 textStyle = TextStyle(
                     fontFamily = FontFamily.Default,
                     fontWeight = FontWeight.Normal,
@@ -74,14 +72,17 @@ fun PasswordInput(
                 ),
                 visualTransformation = PasswordVisualTransformation()
             )
-            if (shouldShowHint) {
+            androidx.compose.animation.AnimatedVisibility(
+                visible = password.isEmpty(),
+                enter = fadeIn(animationSpec = tween(200)),
+                exit = fadeOut(animationSpec = tween(200)),
+                modifier = Modifier.align(Alignment.CenterStart)
+            ) {
                 Text(
                     text = stringResource(id = R.string.password_hint),
                     style = MaterialTheme.typography.body1,
                     color = Gray,
-                    modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp)
                 )
             }
         }

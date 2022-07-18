@@ -50,7 +50,7 @@ fun LoginScreen(
                     brush = Brush.verticalGradient(
                         listOf(
                             Color.Transparent,
-                            Color.Transparent,
+                            MaterialTheme.colors.background.copy(0.25f),
                             MaterialTheme.colors.background
                         )
                     )

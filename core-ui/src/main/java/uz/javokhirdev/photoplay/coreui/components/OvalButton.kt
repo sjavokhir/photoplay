@@ -17,7 +17,7 @@ fun OvalButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    IconButton(onClick = { onClick() }) {
+    IconButton(onClick = onClick) {
         Box(
             modifier = modifier
                 .size(42.dp)

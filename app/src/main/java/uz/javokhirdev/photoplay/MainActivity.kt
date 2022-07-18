@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import dagger.hilt.android.AndroidEntryPoint
+import uz.javokhirdev.photoplay.auth.presentation.forgot.ForgotPasswordScreen
 import uz.javokhirdev.photoplay.auth.presentation.login.LoginScreen
 import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
 import uz.javokhirdev.photoplay.navigation.Route
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = if (shouldShowLogin) {
-                            Route.LOGIN
+                            Route.FORGOT_PASSWORD
                         } else {
                             Route.HOME
                         }
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                         composable(Route.FORGOT_PASSWORD) {
-
+                            ForgotPasswordScreen()
                         }
                     }
                 }

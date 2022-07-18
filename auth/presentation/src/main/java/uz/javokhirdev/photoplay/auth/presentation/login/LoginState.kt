@@ -6,8 +6,6 @@ data class LoginState(
     val email: String? = null,
     val password: String? = null,
     val passwordRequirements: List<PasswordRequirements> = emptyList(),
-    val isEmailHintVisible: Boolean = false,
-    val isPasswordHintVisible: Boolean = false,
     val isLoading: Boolean = false,
     val error: String? = null
 ) {
