@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="add_profile_picture">Add profile picture</string>
+    <string name="app_name">PhotoPlay</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="confirm_password_hint">confirm password here</string>
+    <string name="email">email</string>
+    <string name="email_hint">email here</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_hint">first name here</string>
+    <string name="forgot">Forgot?</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="have_an_account">Don\'t have an account?</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_hint">last name here</string>
+    <string name="login">Login</string>
+    <string name="password">password</string>
+    <string name="password_hint">password here</string>
+    <string name="register">Register</string>
+    <string name="send_email">Send email</string>
+    <string name="send_email_description">Enter the email address you used to create your account and we will email you a link to reset your password</string>
+    <string name="social_logins">Social Logins</string>
+    <string name="password_requirement_characters">At least 8 characters</string>
+    <string name="password_requirement_capital">At least 1 upper-case letter</string>
+    <string name="password_requirement_digit">At least 1 digit</string>
+</resources>
