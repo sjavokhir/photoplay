@@ -8,7 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import uz.javokhirdev.photoplay.auth.domain.model.PasswordRequirements
+import uz.javokhirdev.photoplay.auth.domain.model.PasswordRequirement
 import uz.javokhirdev.photoplay.auth.domain.repository.AuthRepository
 import uz.javokhirdev.photoplay.core.domain.model.UserInfo
 import javax.inject.Inject
@@ -28,7 +28,6 @@ class RegisterViewModel @Inject constructor(
             is RegisterEvent.PasswordChanged -> updatePassword(event.password)
             is RegisterEvent.ConfirmPasswordChanged -> updateConfirmPassword(event.confirmPassword)
             RegisterEvent.OnRegisterClick -> register()
-            RegisterEvent.ErrorDismissed -> dismissError()
         }
     }
 
@@ -51,16 +50,16 @@ class RegisterViewModel @Inject constructor(
     }
 
     private fun updatePassword(password: String) {
-        val requirements = mutableListOf<PasswordRequirements>()
+        val requirements = mutableListOf<PasswordRequirement>()
 
         if (password.length > 7) {
-            requirements.add(PasswordRequirements.EIGHT_CHARACTERS)
+            requirements.add(PasswordRequirement.EIGHT_CHARACTERS)
         }
         if (password.any { it.isUpperCase() }) {
-            requirements.add(PasswordRequirements.CAPITAL_LETTER)
+            requirements.add(PasswordRequirement.CAPITAL_LETTER)
         }
         if (password.any { it.isDigit() }) {
-            requirements.add(PasswordRequirements.NUMBER)
+            requirements.add(PasswordRequirement.NUMBER)
         }
 
         uiState.value = uiState.value.copy(
@@ -70,28 +69,13 @@ class RegisterViewModel @Inject constructor(
     }
 
     private fun updateConfirmPassword(confirmPassword: String) {
-        val requirements = mutableListOf<PasswordRequirements>()
-
-        if (confirmPassword.length > 7) {
-            requirements.add(PasswordRequirements.EIGHT_CHARACTERS)
-        }
-        if (confirmPassword.any { it.isUpperCase() }) {
-            requirements.add(PasswordRequirements.CAPITAL_LETTER)
-        }
-        if (confirmPassword.any { it.isDigit() }) {
-            requirements.add(PasswordRequirements.NUMBER)
-        }
-
         uiState.value = uiState.value.copy(
-            password = confirmPassword,
-            passwordRequirements = requirements.toList()
+            confirmPassword = confirmPassword
         )
     }
 
     private fun register() {
-        uiState.value = uiState.value.copy(
-            isLoading = true
-        )
+        onLoading()
 
         viewModelScope.launch(Dispatchers.IO) {
             delay(2000L)
@@ -104,27 +88,36 @@ class RegisterViewModel @Inject constructor(
                         email = uiState.value.email.orEmpty()
                     )
                 )
-                .onSuccess {
-                    withContext(Dispatchers.Main) {
-                        uiState.value = uiState.value.copy(
-                            isLoading = false,
-                        )
-                    }
-                }
-                .onFailure {
-                    withContext(Dispatchers.Main) {
-                        uiState.value = uiState.value.copy(
-                            isLoading = false,
-                            error = it.message
-                        )
-                    }
-                }
+                .onSuccess { onSuccess() }
+                .onFailure { onError(it) }
         }
     }
 
-    private fun dismissError() {
+    private fun onLoading() {
         uiState.value = uiState.value.copy(
+            isLoading = true,
+            isSuccess = false,
             error = null
         )
+    }
+
+    private suspend fun onSuccess() {
+        withContext(Dispatchers.Main) {
+            uiState.value = uiState.value.copy(
+                isLoading = false,
+                isSuccess = true,
+                error = null
+            )
+        }
+    }
+
+    private suspend fun onError(throwable: Throwable) {
+        withContext(Dispatchers.Main) {
+            uiState.value = uiState.value.copy(
+                isLoading = false,
+                isSuccess = false,
+                error = throwable.message.orEmpty()
+            )
+        }
     }
 }

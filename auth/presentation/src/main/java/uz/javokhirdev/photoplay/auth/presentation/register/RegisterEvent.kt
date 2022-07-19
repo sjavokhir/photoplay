@@ -8,6 +8,4 @@ sealed class RegisterEvent {
     data class ConfirmPasswordChanged(val confirmPassword: String) : RegisterEvent()
 
     object OnRegisterClick : RegisterEvent()
-
-    object ErrorDismissed : RegisterEvent()
 }

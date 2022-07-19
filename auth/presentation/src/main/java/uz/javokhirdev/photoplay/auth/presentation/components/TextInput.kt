@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -22,7 +21,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import uz.javokhirdev.photoplay.core.R
 import uz.javokhirdev.photoplay.coreui.Gray
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
 
@@ -30,13 +28,15 @@ import uz.javokhirdev.photoplay.coreui.LocalSpacing
 fun TextInput(
     modifier: Modifier = Modifier,
     text: String,
+    title: String,
+    hint: String,
     onTextChanged: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
     Column(modifier = modifier) {
         Text(
-            text = stringResource(id = R.string.email).uppercase(),
+            text = title.uppercase(),
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onBackground
@@ -77,7 +77,7 @@ fun TextInput(
                 modifier = Modifier.align(Alignment.CenterStart)
             ) {
                 Text(
-                    text = stringResource(id = R.string.email_hint),
+                    text = hint,
                     style = MaterialTheme.typography.body1,
                     color = Gray,
                     modifier = Modifier.padding(start = 16.dp)

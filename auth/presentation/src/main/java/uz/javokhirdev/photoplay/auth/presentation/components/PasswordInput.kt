@@ -31,13 +31,15 @@ import uz.javokhirdev.photoplay.coreui.LocalSpacing
 fun PasswordInput(
     modifier: Modifier = Modifier,
     password: String,
+    title: String = stringResource(id = R.string.password),
+    hint: String = stringResource(id = R.string.password_hint),
     onPasswordChanged: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
     Column(modifier = modifier) {
         Text(
-            text = stringResource(id = R.string.password).uppercase(),
+            text = title.uppercase(),
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onBackground
@@ -79,7 +81,7 @@ fun PasswordInput(
                 modifier = Modifier.align(Alignment.CenterStart)
             ) {
                 Text(
-                    text = stringResource(id = R.string.password_hint),
+                    text = hint,
                     style = MaterialTheme.typography.body1,
                     color = Gray,
                     modifier = Modifier.padding(start = 16.dp)

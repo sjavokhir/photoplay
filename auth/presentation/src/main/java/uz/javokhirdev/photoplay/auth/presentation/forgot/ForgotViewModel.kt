@@ -22,7 +22,6 @@ class ForgotViewModel @Inject constructor(
         when (event) {
             is ForgotEvent.EmailChanged -> updateEmail(event.email)
             ForgotEvent.OnSendClick -> sendEmail()
-            ForgotEvent.ErrorDismissed -> {}
         }
     }
 
@@ -33,36 +32,43 @@ class ForgotViewModel @Inject constructor(
     }
 
     private fun sendEmail() {
-        uiState.value = uiState.value.copy(
-            isLoading = true
-        )
+        onLoading()
 
         viewModelScope.launch(Dispatchers.IO) {
             delay(2000L)
 
             repository
                 .forgotPassword(email = uiState.value.email.orEmpty())
-                .onSuccess {
-                    withContext(Dispatchers.Main) {
-                        uiState.value = uiState.value.copy(
-                            isLoading = false,
-                        )
-                    }
-                }
-                .onFailure {
-                    withContext(Dispatchers.Main) {
-                        uiState.value = uiState.value.copy(
-                            isLoading = false,
-                            error = it.message
-                        )
-                    }
-                }
+                .onSuccess { onSuccess() }
+                .onFailure { onError(it) }
         }
     }
 
-    private fun dismissError() {
+    private fun onLoading() {
         uiState.value = uiState.value.copy(
+            isLoading = true,
+            isSuccess = false,
             error = null
         )
+    }
+
+    private suspend fun onSuccess() {
+        withContext(Dispatchers.Main) {
+            uiState.value = uiState.value.copy(
+                isLoading = false,
+                isSuccess = true,
+                error = null
+            )
+        }
+    }
+
+    private suspend fun onError(throwable: Throwable) {
+        withContext(Dispatchers.Main) {
+            uiState.value = uiState.value.copy(
+                isLoading = false,
+                isSuccess = false,
+                error = throwable.message.orEmpty()
+            )
+        }
     }
 }

@@ -14,23 +14,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import uz.javokhirdev.photoplay.core.R
 import uz.javokhirdev.photoplay.coreui.AppPrimary
 import uz.javokhirdev.photoplay.coreui.AppSecondary
 
 @Composable
 fun ActionButton(
-    text: String,
+    title: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true
+    isLoading: Boolean = false
 ) {
     Button(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-        enabled = isEnabled,
+        enabled = !isLoading,
         shape = MaterialTheme.shapes.medium
     ) {
         Box(
@@ -45,7 +47,7 @@ fun ActionButton(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = text.uppercase(),
+                text = (if (isLoading) stringResource(id = R.string.loading) else title).uppercase(),
                 style = MaterialTheme.typography.button,
                 color = MaterialTheme.colors.onPrimary
             )

@@ -23,53 +23,55 @@ import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
 
 @Composable
 fun ForgotPasswordScreen(
-    viewModel: ForgotViewModel = hiltViewModel()
+    viewModel: ForgotViewModel = hiltViewModel(),
+    navigateUp: () -> Unit = {}
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
 
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        item {
-            BackButton()
-        }
-        item {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        vertical = 20.dp,
-                        horizontal = 40.dp
-                    ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Spacer(modifier = Modifier.height(30.dp))
-                BigImageLogo()
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                Text(
-                    text = stringResource(id = R.string.forgot_password).uppercase(),
-                    style = MaterialTheme.typography.h4,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground
-                )
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    text = stringResource(id = R.string.send_email_description),
-                    style = MaterialTheme.typography.body1,
-                    color = Gray,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                EmailInput(
-                    email = uiState.email.orEmpty(),
-                    onEmailChanged = {
-                        viewModel.handleEvent(ForgotEvent.EmailChanged(it))
-                    }
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                ActionButton(
-                    text = stringResource(id = R.string.send_email),
-                    onClick = { viewModel.handleEvent(ForgotEvent.OnSendClick) }
-                )
+    if (uiState.isSuccess) {
+        navigateUp()
+    } else {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            item {
+                BackButton(onClick = navigateUp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 40.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Spacer(modifier = Modifier.height(34.dp))
+                    BigImageLogo()
+                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                    Text(
+                        text = stringResource(id = R.string.forgot_password).uppercase(),
+                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.onBackground
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = stringResource(id = R.string.send_email_description),
+                        style = MaterialTheme.typography.body1,
+                        color = Gray,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                    EmailInput(
+                        email = uiState.email.orEmpty(),
+                        onEmailChanged = {
+                            viewModel.handleEvent(ForgotEvent.EmailChanged(it))
+                        }
+                    )
+                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                    ActionButton(
+                        title = stringResource(id = R.string.send_email),
+                        onClick = { viewModel.handleEvent(ForgotEvent.OnSendClick) },
+                        isLoading = uiState.isLoading
+                    )
+                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                }
             }
         }
     }
