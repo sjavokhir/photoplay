@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "photoplay"
+include ":app"
+include ":core"
+include ":core-ui"
+
+include ":auth"
+include ":auth:data"
+include ":auth:domain"
+include ":auth:presentation"
