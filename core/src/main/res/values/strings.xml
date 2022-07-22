@@ -4,6 +4,10 @@
     <string name="app_name">PhotoPlay</string>
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_password_hint">confirm password here</string>
+    <string name="dashboard_downloads">Downloads</string>
+    <string name="dashboard_home">Home</string>
+    <string name="dashboard_profile">Profile</string>
+    <string name="dashboard_search">Search</string>
     <string name="email">email</string>
     <string name="email_hint">email here</string>
     <string name="first_name">First name</string>

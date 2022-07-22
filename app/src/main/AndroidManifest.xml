@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Photoplay"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".AppActivity"
             android:exported="true"
             android:theme="@style/Theme.Photoplay"
             android:windowSoftInputMode="adjustResize|stateHidden">

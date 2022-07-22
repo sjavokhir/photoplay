@@ -22,13 +22,13 @@ import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
 fun RegisterScreen(
     viewModel: RegisterViewModel = hiltViewModel(),
     navigateUp: () -> Unit = {},
-    navigateToHome: () -> Unit = {}
+    navigateToDashboard: () -> Unit = {}
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
 
     if (uiState.isSuccess) {
-        navigateToHome()
+        navigateToDashboard()
     } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             item {
@@ -85,7 +85,8 @@ fun RegisterScreen(
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     ActionButton(
                         title = stringResource(id = R.string.register),
-                        onClick = { viewModel.handleEvent(RegisterEvent.OnRegisterClick) }
+                        onClick = { viewModel.handleEvent(RegisterEvent.OnRegisterClick) },
+                        isLoading = uiState.isLoading
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                 }
