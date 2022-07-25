@@ -9,11 +9,5 @@ import uz.javokhirdev.photoplay.coreui.Gray
 
 @Composable
 fun getIconTint(selected: Boolean): State<Color> {
-    return animateColorAsState(
-        if (selected) {
-            MaterialTheme.colors.primary
-        } else {
-            Gray
-        }
-    )
+    return animateColorAsState(if (selected) MaterialTheme.colors.primary else Gray)
 }

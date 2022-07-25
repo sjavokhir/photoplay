@@ -16,15 +16,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
 import uz.javokhirdev.photoplay.core.R
+import uz.javokhirdev.photoplay.coreui.LocalSpacing
 import uz.javokhirdev.photoplay.home.presentation.components.getIconTint
 
 enum class DashboardSections(
@@ -55,7 +56,7 @@ fun PhotoPlayBottomBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.surface.copy(alpha = 0.5f))
+                .background(MaterialTheme.colors.surface.copy(alpha = 0.75f))
         ) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 tabs.forEach { section ->
@@ -90,7 +91,9 @@ fun PhotoPlayBottomBar(
                                 }
                             }
                         },
-                        modifier = BottomNavigationItemPadding.weight(1f)
+                        modifier = Modifier
+                            .weight(1f)
+                            .clip(MaterialTheme.shapes.large)
                     )
                 }
             }
@@ -106,26 +109,26 @@ fun BottomNavigationItem(
     onSelected: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val spacing = LocalSpacing.current
+
     Column(
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.selectable(selected = selected, onClick = onSelected)
     ) {
+        Spacer(modifier = Modifier.height(spacing.spaceSmall))
         Box(
             modifier = Modifier.layoutId("icon"),
             content = icon
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
         Box(
             modifier = Modifier.layoutId("text"),
             content = text
         )
+        Spacer(modifier = Modifier.height(spacing.spaceSmall))
     }
 }
-
-private val BottomNavigationItemPadding = Modifier.padding(
-    horizontal = 8.dp,
-    vertical = 8.dp
-)
 
 private val NavGraph.startDestination: NavDestination?
     get() = findNode(startDestinationId)

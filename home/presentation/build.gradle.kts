@@ -8,4 +8,5 @@ dependencies {
     "implementation"(project(Modules.homeDomain))
 
     "implementation"(Coil.coilCompose)
+    "implementation"(Other.ratingBar)
 }

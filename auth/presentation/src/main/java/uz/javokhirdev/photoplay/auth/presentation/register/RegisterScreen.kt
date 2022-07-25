@@ -16,7 +16,7 @@ import uz.javokhirdev.photoplay.core.R
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
 import uz.javokhirdev.photoplay.coreui.components.ActionButton
 import uz.javokhirdev.photoplay.coreui.components.BackButton
-import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
+import uz.javokhirdev.photoplay.coreui.components.BigLogo
 
 @Composable
 fun RegisterScreen(
@@ -40,7 +40,7 @@ fun RegisterScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Spacer(modifier = Modifier.height(34.dp))
-                    BigImageLogo()
+                    BigLogo()
                     Spacer(modifier = Modifier.height(spacing.spaceLarge))
                     TextInput(
                         text = uiState.firstName.orEmpty(),

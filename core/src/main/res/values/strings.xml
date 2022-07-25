@@ -30,4 +30,5 @@
     <string name="send_email">Send email</string>
     <string name="send_email_description">Enter the email address you used to create your account and we will email you a link to reset your password</string>
     <string name="social_logins">Social Logins</string>
+    <string name="watching">Watching</string>
 </resources>

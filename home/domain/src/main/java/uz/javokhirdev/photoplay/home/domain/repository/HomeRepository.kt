@@ -6,5 +6,5 @@ interface HomeRepository {
 
     fun getRandomMovie(): Result<Movie>
 
-    fun getWatchings(): Result<List<String>>
+    fun getWatchings(): Result<List<Movie>>
 }

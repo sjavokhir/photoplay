@@ -19,7 +19,7 @@ import uz.javokhirdev.photoplay.coreui.Gray
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
 import uz.javokhirdev.photoplay.coreui.components.ActionButton
 import uz.javokhirdev.photoplay.coreui.components.BackButton
-import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
+import uz.javokhirdev.photoplay.coreui.components.BigLogo
 
 @Composable
 fun ForgotPasswordScreen(
@@ -42,7 +42,7 @@ fun ForgotPasswordScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Spacer(modifier = Modifier.height(34.dp))
-                    BigImageLogo()
+                    BigLogo()
                     Spacer(modifier = Modifier.height(spacing.spaceLarge))
                     Text(
                         text = stringResource(id = R.string.forgot_password).uppercase(),
