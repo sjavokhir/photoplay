@@ -17,4 +17,8 @@ object Modules {
     const val downloadsData = ":downloads:data"
     const val downloadsDomain = ":downloads:domain"
     const val downloadsPresentation = ":downloads:presentation"
+
+    const val movieDetailData = ":movie-detail:data"
+    const val movieDetailDomain = ":movie-detail:domain"
+    const val movieDetailPresentation = ":movie-detail:presentation"
 }

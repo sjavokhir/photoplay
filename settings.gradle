@@ -39,3 +39,10 @@ include ":downloads"
 include ":downloads:data"
 include ":downloads:domain"
 include ":downloads:presentation"
+
+include ":movie-detail"
+include ":movie-detail:data"
+include ":movie-detail:domain"
+include ":movie-detail:presentation"
+
+include ":cast"

@@ -84,6 +84,7 @@ fun RegisterScreen(
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     ActionButton(
+                        modifier = Modifier.fillMaxWidth(),
                         title = stringResource(id = R.string.register),
                         onClick = { viewModel.handleEvent(RegisterEvent.OnRegisterClick) },
                         isLoading = uiState.isLoading

@@ -1,6 +1,7 @@
 package uz.javokhirdev.photoplay.downloads.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,7 +26,8 @@ import uz.javokhirdev.photoplay.coreui.components.PhotoPlaySurface
 @ExperimentalCoilApi
 @Composable
 fun DownloadsScreen(
-    viewModel: DownloadsViewModel = hiltViewModel()
+    viewModel: DownloadsViewModel = hiltViewModel(),
+    navigateToMovieDetail: (Int?) -> Unit
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
@@ -36,7 +38,10 @@ fun DownloadsScreen(
                 Spacer(modifier = Modifier.height(spacing.spaceLarge))
             }
             items(uiState.downloads.orEmpty()) {
-                DownloadItem(download = it)
+                DownloadItem(
+                    download = it,
+                    onMovieClick = navigateToMovieDetail
+                )
                 Spacer(modifier = Modifier.height(20.dp))
             }
             item {
@@ -50,7 +55,8 @@ fun DownloadsScreen(
 @Composable
 fun DownloadItem(
     modifier: Modifier = Modifier,
-    download: Download
+    download: Download,
+    onMovieClick: (Int?) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
@@ -59,6 +65,7 @@ fun DownloadItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
+            .clickable { onMovieClick(download.id) }
     ) {
         Image(
             painter = rememberImagePainter(

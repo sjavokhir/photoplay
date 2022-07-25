@@ -70,6 +70,9 @@ dependencies {
     implementation(project(Modules.downloadsPresentation))
     implementation(project(Modules.downloadsDomain))
     implementation(project(Modules.downloadsData))
+    implementation(project(Modules.movieDetailPresentation))
+    implementation(project(Modules.movieDetailDomain))
+    implementation(project(Modules.movieDetailData))
 
     implementation(Compose.compiler)
     implementation(Compose.ui)

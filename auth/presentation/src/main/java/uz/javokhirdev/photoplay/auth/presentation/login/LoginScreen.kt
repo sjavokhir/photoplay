@@ -70,6 +70,7 @@ fun LoginScreen(
                         )
                         Spacer(modifier = Modifier.height(spacing.spaceMedium))
                         ActionButton(
+                            modifier = Modifier.fillMaxWidth(),
                             title = stringResource(id = R.string.login),
                             onClick = { viewModel.handleEvent(LoginEvent.OnLoginClick) },
                             isLoading = uiState.isLoading

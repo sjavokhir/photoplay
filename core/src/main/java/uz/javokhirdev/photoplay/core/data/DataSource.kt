@@ -8,6 +8,7 @@ object DataSource {
 
     fun getWatchings(): List<Movie> = movies
     fun getDownloads(): List<Download> = downloads
+    fun getActors(): List<Actor> = actors
 
     private val movies = arrayListOf(
         Movie(
@@ -135,7 +136,40 @@ object DataSource {
 
     private val actors = arrayListOf(
         Actor(
-
+            id = 1,
+            name = "Al Pacino",
+            about = "Alfredo James \"Al\" 'Pacino established himself as a film actor during one of cinema's most vibrant decades, the 1970s, and has become an enduring and iconic figure in the world of American movies. He was born April 25, 1940 in Manhattan, New York City, to Italian-American parents, Rose (nee Gerardi) and Sal Pacino.",
+            imageUrl = "file:///android_asset/actors/image_06.jpg",
+        ),
+        Actor(
+            id = 2,
+            name = "Kate Winslet",
+            about = "Ask Kate Winslet what she likes about any of her characters, and the word \"ballsy\" is bound to pop up at least once. The British actress has made a point of eschewing straightforward pretty-girl parts in favor of more devilish damsels; as a result, she's built an eclectic resume that runs the gamut from Shakespearean tragedy to modern-day mysticism and erotica.",
+            imageUrl = "file:///android_asset/actors/image_01.jpg",
+        ),
+        Actor(
+            id = 3,
+            name = "Gustaf Skarsgård",
+            about = "Gustaf Skarsgård was born on November 12, 1980 in Stockholm, Stockholms län, Sweden. He is an actor and director, known for Vikings (2013), Westworld (2016) and The Way Back (2010).",
+            imageUrl = "file:///android_asset/actors/image_02.jpg",
+        ),
+        Actor(
+            id = 4,
+            name = "Alexander Ludwig",
+            about = "After starring in the hugely successful blockbuster, The Hunger Games (2012) (for which he received two awards), Alexander has gone on to work in films such as Lone Survivor (2013), The Final Girls (2015), and Bad Boys for Life (2020), and received critical acclaim for his performance as Bjorn Ironside in the Global hit television series, Vikings (2013).",
+            imageUrl = "file:///android_asset/actors/image_03.jpg",
+        ),
+        Actor(
+            id = 5,
+            name = "Katheryn Winnick",
+            about = "Canadian actress, director and producer Katheryn Winnick starred in the critically acclaimed, Emmy award-winning television series Vikings, produced by MGM and The History Channel. In addition to her lead role on Vikings, an episode directed by Winnick debuted in 2020. Entertainment Weekly declared that her role as \"Lagertha may be the most exciting feminist character on TV.\" Her portrayal of the fierce shieldmaiden has garnered her several impressive accolades including a Women's Image Network award for Best Actress in a Drama Series in 2018, a nomination for a Critic's Choice Award for Best Supporting Actress in a Drama Series, a Canadian Screen Award nomination for Best Performance by a Lead Dramatic Actress (2014), Best Actress in a Drama Series by the Women's Image Network nominations in 2014, 2015, and 2016 and a Golden Maple Award nomination for Best Actress in a TV Series. In addition to these prestigious nominations, Katheryn received the Serendipity Film's Award of Excellence at the Banff World Media Festival in 2015. She was also chosen to be a jury member for the 2019 Cannes Series festival.",
+            imageUrl = "file:///android_asset/actors/image_04.jpg",
+        ),
+        Actor(
+            id = 6,
+            name = "Alex Høgh Andersen",
+            about = "Born and raised in a small town southwest of Copenhagen, Alex Høgh Andersen, is currently starring as a series regular in the History Channel drama, Vikings (2013). Andersen made his debut in the season 4 mid-season finale and has now been positioned as a lead.",
+            imageUrl = "file:///android_asset/actors/image_05.jpg",
         )
     )
 }

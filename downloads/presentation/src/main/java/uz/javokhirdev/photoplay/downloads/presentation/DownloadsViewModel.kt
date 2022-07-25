@@ -5,20 +5,17 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
 import uz.javokhirdev.photoplay.downloads.domain.usecase.DownloadsUseCases
 import javax.inject.Inject
 
 @HiltViewModel
 class DownloadsViewModel @Inject constructor(
-    preferences: Preferences,
     private val downloadsUseCases: DownloadsUseCases
 ) : ViewModel() {
 
     val uiState = MutableStateFlow(DownloadsState())
 
     init {
-        preferences.saveShouldShowLogin(false)
         getDownloads()
     }
 
