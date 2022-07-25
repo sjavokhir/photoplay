@@ -19,12 +19,6 @@ class DownloadsViewModel @Inject constructor(
         getDownloads()
     }
 
-    fun handleEvent(event: DownloadsEvent) {
-        when (event) {
-            DownloadsEvent.OnDownloadClick -> {}
-        }
-    }
-
     private fun getDownloads() {
         viewModelScope.launch {
             downloadsUseCases.getDownloads.invoke()

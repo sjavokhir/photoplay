@@ -14,6 +14,7 @@ object Route {
 
 object Params {
     const val MOVIE_ID_KEY = "movie_id"
+    const val CAST_ID_KEY = "cast_id"
 }
 
 class PhotoPlayNavigationActions(navController: NavHostController) {
@@ -39,6 +40,11 @@ class PhotoPlayNavigationActions(navController: NavHostController) {
     }
     val navigateToMovieDetail = { movieId: Int? ->
         navController.navigate("${Route.MOVIE_DETAIL}/$movieId") {
+            launchSingleTop = true
+        }
+    }
+    val navigateToCast = { castId: Int? ->
+        navController.navigate("${Route.CAST}/$castId") {
             launchSingleTop = true
         }
     }

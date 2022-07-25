@@ -3,6 +3,7 @@
     <string name="add_profile_picture">Add profile picture</string>
     <string name="app_name">PhotoPlay</string>
     <string name="cast">Cast</string>
+    <string name="known_for">Known for</string>
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_password_hint">confirm password here</string>
     <string name="dashboard_downloads">Downloads</string>

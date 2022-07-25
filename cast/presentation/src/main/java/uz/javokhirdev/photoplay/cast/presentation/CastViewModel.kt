@@ -1,43 +1,43 @@
-package uz.javokhirdev.photoplay.moviedetail.presentation
+package uz.javokhirdev.photoplay.cast.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import uz.javokhirdev.photoplay.moviedetail.domain.usecase.MovieDetailUseCases
+import uz.javokhirdev.photoplay.cast.domain.usecase.CastUseCases
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailViewModel @Inject constructor(
-    private val movieDetailUseCases: MovieDetailUseCases
+class CastViewModel @Inject constructor(
+    private val castUseCases: CastUseCases
 ) : ViewModel() {
 
-    val uiState = MutableStateFlow(MovieDetailState())
+    val uiState = MutableStateFlow(CastState())
 
     init {
-        getActors()
+        getMovies()
     }
 
-    fun getMovie(movieId: Int? = null) {
-        movieId ?: return
+    fun getActor(actorId: Int? = null) {
+        actorId ?: return
 
         viewModelScope.launch {
-            movieDetailUseCases.getMovie.invoke(movieId)
+            castUseCases.getActor.invoke(actorId)
                 .onSuccess {
                     uiState.value = uiState.value.copy(
-                        movie = it
+                        actor = it
                     )
                 }
         }
     }
 
-    private fun getActors() {
+    private fun getMovies() {
         viewModelScope.launch {
-            movieDetailUseCases.getActors.invoke()
+            castUseCases.getKnownFor.invoke()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
-                        actors = it
+                        movies = it
                     )
                 }
         }

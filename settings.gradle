@@ -46,3 +46,6 @@ include ":movie-detail:domain"
 include ":movie-detail:presentation"
 
 include ":cast"
+include ":cast:data"
+include ":cast:domain"
+include ":cast:presentation"

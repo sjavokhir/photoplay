@@ -73,6 +73,9 @@ dependencies {
     implementation(project(Modules.movieDetailPresentation))
     implementation(project(Modules.movieDetailDomain))
     implementation(project(Modules.movieDetailData))
+    implementation(project(Modules.castPresentation))
+    implementation(project(Modules.castDomain))
+    implementation(project(Modules.castData))
 
     implementation(Compose.compiler)
     implementation(Compose.ui)

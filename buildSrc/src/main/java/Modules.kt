@@ -21,4 +21,8 @@ object Modules {
     const val movieDetailData = ":movie-detail:data"
     const val movieDetailDomain = ":movie-detail:domain"
     const val movieDetailPresentation = ":movie-detail:presentation"
+
+    const val castData = ":cast:data"
+    const val castDomain = ":cast:domain"
+    const val castPresentation = ":cast:presentation"
 }

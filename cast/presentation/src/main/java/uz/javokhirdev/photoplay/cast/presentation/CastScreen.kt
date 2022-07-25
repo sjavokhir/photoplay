@@ -1,15 +1,12 @@
-package uz.javokhirdev.photoplay.moviedetail.presentation
+package uz.javokhirdev.photoplay.cast.presentation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.PlayCircleFilled
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -24,23 +21,25 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import uz.javokhirdev.photoplay.core.R
-import uz.javokhirdev.photoplay.core.domain.model.Actor
+import uz.javokhirdev.photoplay.core.domain.model.Movie
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
-import uz.javokhirdev.photoplay.coreui.components.*
+import uz.javokhirdev.photoplay.coreui.components.BackButton
+import uz.javokhirdev.photoplay.coreui.components.BottomGradientImage
+import uz.javokhirdev.photoplay.coreui.components.PhotoPlaySurface
+import uz.javokhirdev.photoplay.coreui.components.TextHeader
 
 @ExperimentalCoilApi
 @Composable
-fun MovieDetailScreen(
-    movieId: Int? = null,
-    viewModel: MovieDetailViewModel = hiltViewModel(),
-    navigateUp: () -> Unit,
-    navigateToCast: (Int?) -> Unit
+fun CastScreen(
+    castId: Int? = null,
+    viewModel: CastViewModel = hiltViewModel(),
+    navigateUp: () -> Unit
 ) {
-    viewModel.getMovie(movieId)
+    viewModel.getActor(castId)
 
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
-    val movie = uiState.movie
+    val actor = uiState.actor
 
     PhotoPlaySurface(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -50,61 +49,33 @@ fun MovieDetailScreen(
             item {
                 Box {
                     BottomGradientImage(
-                        imageUrl = movie?.imageUrl.orEmpty(),
-                        height = 300.dp
+                        imageUrl = actor?.imageUrl.orEmpty(),
+                        height = 400.dp
                     )
                     BackButton(onClick = navigateUp)
-                    OvalButton(
-                        modifier = Modifier.align(Alignment.Center),
-                        vector = Icons.Rounded.PlayCircleFilled,
-                        size = 80.dp
-                    )
                     Column(
                         modifier = Modifier
                             .padding(horizontal = 20.dp)
-                            .align(Alignment.BottomStart)
+                            .align(Alignment.BottomCenter)
                     ) {
                         Text(
-                            text = movie?.name.orEmpty(),
-                            style = MaterialTheme.typography.h2,
-                            fontWeight = FontWeight.SemiBold,
+                            text = actor?.name.orEmpty(),
+                            style = MaterialTheme.typography.h1,
+                            fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colors.onBackground,
+                            textAlign = TextAlign.Center
                         )
-                        Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                        GenresForm(genres = movie?.genres.orEmpty())
                     }
                 }
                 Spacer(modifier = Modifier.height(spacing.spaceNormal))
                 Text(
-                    text = ((movie?.rating ?: 0f) * 2).toString(),
-                    style = MaterialTheme.typography.h1,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground,
-                    modifier = Modifier.padding(horizontal = 20.dp)
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                RatingBar(
-                    rating = movie?.rating,
-                    modifier = Modifier.padding(horizontal = 20.dp)
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                Text(
-                    text = movie?.description.orEmpty(),
+                    text = actor?.about.orEmpty(),
                     style = MaterialTheme.typography.body1,
                     color = MaterialTheme.colors.onBackground,
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                ActionButton(
-                    modifier = Modifier.width(160.dp),
-                    title = stringResource(id = R.string.watch_now),
-                    onClick = { },
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                ActorsForm(
-                    watchings = uiState.actors.orEmpty(),
-                    navigateToCast = navigateToCast
-                )
+                Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                MoviesForm(watchings = uiState.movies.orEmpty())
                 Spacer(modifier = Modifier.height(spacing.spaceMedium))
             }
         }
@@ -113,25 +84,24 @@ fun MovieDetailScreen(
 
 @ExperimentalCoilApi
 @Composable
-fun ActorsForm(
+fun MoviesForm(
     modifier: Modifier = Modifier,
-    watchings: List<Actor> = emptyList(),
-    navigateToCast: (Int?) -> Unit
+    watchings: List<Movie> = emptyList()
 ) {
     val spacing = LocalSpacing.current
 
     Column(modifier = modifier.fillMaxWidth()) {
         TextHeader(
             modifier = Modifier.padding(horizontal = 20.dp),
-            text = stringResource(id = R.string.cast)
+            text = stringResource(id = R.string.known_for)
         )
         Spacer(modifier = Modifier.height(spacing.spaceNormal))
         LazyRow {
             item { Spacer(modifier = Modifier.width(20.dp)) }
             items(watchings) {
-                ActorItem(
-                    actor = it,
-                    navigateToCast = navigateToCast
+                MovieItem(
+                    name = it.name,
+                    imageUrl = it.imageUrl
                 )
                 Spacer(modifier = Modifier.width(20.dp))
             }
@@ -141,10 +111,10 @@ fun ActorsForm(
 
 @ExperimentalCoilApi
 @Composable
-fun ActorItem(
+fun MovieItem(
     modifier: Modifier = Modifier,
-    actor: Actor,
-    navigateToCast: (Int?) -> Unit
+    name: String? = "",
+    imageUrl: String? = ""
 ) {
     val spacing = LocalSpacing.current
 
@@ -153,11 +123,10 @@ fun ActorItem(
         modifier = modifier
             .width(96.dp)
             .clip(MaterialTheme.shapes.small)
-            .clickable { navigateToCast(actor.id) }
     ) {
         Image(
             painter = rememberImagePainter(
-                data = actor.imageUrl,
+                data = imageUrl,
                 builder = {
                     crossfade(true)
                 }
@@ -171,7 +140,7 @@ fun ActorItem(
         )
         Spacer(modifier = Modifier.height(spacing.spaceSmall))
         Text(
-            text = actor.name.orEmpty(),
+            text = name.orEmpty(),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center
