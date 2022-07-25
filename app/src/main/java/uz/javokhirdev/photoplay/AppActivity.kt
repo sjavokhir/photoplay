@@ -19,6 +19,7 @@ import uz.javokhirdev.photoplay.auth.presentation.forgot.ForgotPasswordScreen
 import uz.javokhirdev.photoplay.auth.presentation.login.LoginScreen
 import uz.javokhirdev.photoplay.auth.presentation.register.RegisterScreen
 import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
+import uz.javokhirdev.photoplay.downloads.presentation.DownloadsScreen
 import uz.javokhirdev.photoplay.home.presentation.dashboard.DashboardSections
 import uz.javokhirdev.photoplay.home.presentation.dashboard.PhotoPlayBottomBar
 import uz.javokhirdev.photoplay.home.presentation.home.HomeScreen
@@ -93,6 +94,7 @@ class AppActivity : ComponentActivity() {
                             composable(DashboardSections.SEARCH.route) {
                             }
                             composable(DashboardSections.DOWNLOADS.route) {
+                                DownloadsScreen()
                             }
                             composable(DashboardSections.PROFILE.route) {
                                 ProfileScreen()

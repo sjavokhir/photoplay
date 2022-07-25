@@ -67,6 +67,9 @@ dependencies {
     implementation(project(Modules.profilePresentation))
     implementation(project(Modules.profileDomain))
     implementation(project(Modules.profileData))
+    implementation(project(Modules.downloadsPresentation))
+    implementation(project(Modules.downloadsDomain))
+    implementation(project(Modules.downloadsData))
 
     implementation(Compose.compiler)
     implementation(Compose.ui)

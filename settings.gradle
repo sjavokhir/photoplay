@@ -34,3 +34,8 @@ include ":profile"
 include ":profile:data"
 include ":profile:domain"
 include ":profile:presentation"
+
+include ":downloads"
+include ":downloads:data"
+include ":downloads:domain"
+include ":downloads:presentation"

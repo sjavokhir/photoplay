@@ -13,4 +13,8 @@ object Modules {
     const val profileData = ":profile:data"
     const val profileDomain = ":profile:domain"
     const val profilePresentation = ":profile:presentation"
+
+    const val downloadsData = ":downloads:data"
+    const val downloadsDomain = ":downloads:domain"
+    const val downloadsPresentation = ":downloads:presentation"
 }

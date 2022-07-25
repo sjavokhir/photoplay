@@ -1,7 +1,7 @@
 package uz.javokhirdev.photoplay.home.data.repository
 
 import uz.javokhirdev.photoplay.core.domain.model.Movie
-import uz.javokhirdev.photoplay.home.data.remote.DataSource
+import uz.javokhirdev.photoplay.core.data.DataSource
 import uz.javokhirdev.photoplay.home.domain.repository.HomeRepository
 import javax.inject.Inject
 

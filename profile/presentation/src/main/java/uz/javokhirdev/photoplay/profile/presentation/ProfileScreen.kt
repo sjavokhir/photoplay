@@ -12,6 +12,7 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
@@ -38,27 +39,7 @@ fun ProfileScreen() {
                 Spacer(modifier = Modifier.height(spacing.spaceLarge))
             }
             items(profileMenus) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            vertical = 16.dp,
-                            horizontal = 12.dp
-                        )
-                ) {
-                    Icon(
-                        imageVector = it.second,
-                        contentDescription = it.first,
-                        tint = MaterialTheme.colors.primary
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
-                    Text(
-                        text = it.first,
-                        style = MaterialTheme.typography.body1,
-                        color = MaterialTheme.colors.onBackground
-                    )
-                }
+                ProfileMenuItem(item = it)
                 Divider(color = Gray)
             }
             item {
@@ -92,6 +73,34 @@ fun ProfileDetailForm(
             text = "Premium",
             style = MaterialTheme.typography.h4,
             color = MaterialTheme.colors.primary
+        )
+    }
+}
+
+@Composable
+fun ProfileMenuItem(
+    modifier: Modifier = Modifier,
+    item: Pair<String, ImageVector>
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(
+                vertical = 16.dp,
+                horizontal = 12.dp
+            )
+    ) {
+        Icon(
+            imageVector = item.second,
+            contentDescription = item.first,
+            tint = MaterialTheme.colors.primary
+        )
+        Spacer(modifier = Modifier.width(20.dp))
+        Text(
+            text = item.first,
+            style = MaterialTheme.typography.body1,
+            color = MaterialTheme.colors.onBackground
         )
     }
 }
