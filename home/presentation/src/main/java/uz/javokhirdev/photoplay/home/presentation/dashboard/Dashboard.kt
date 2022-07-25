@@ -8,6 +8,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Search
@@ -35,7 +36,7 @@ enum class DashboardSections(
 ) {
     HOME(R.string.dashboard_home, Icons.Rounded.Home, "dashboard/home"),
     SEARCH(R.string.dashboard_search, Icons.Rounded.Search, "dashboard/search"),
-    DOWNLOADS(R.string.dashboard_downloads, Icons.Rounded.Home, "dashboard/downloads"),
+    DOWNLOADS(R.string.dashboard_downloads, Icons.Rounded.Download, "dashboard/downloads"),
     PROFILE(R.string.dashboard_profile, Icons.Rounded.Person, "dashboard/profile")
 }
 

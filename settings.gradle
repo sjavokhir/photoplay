@@ -29,3 +29,8 @@ include ":home"
 include ":home:data"
 include ":home:domain"
 include ":home:presentation"
+
+include ":profile"
+include ":profile:data"
+include ":profile:domain"
+include ":profile:presentation"

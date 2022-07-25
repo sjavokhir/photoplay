@@ -24,6 +24,7 @@ import uz.javokhirdev.photoplay.home.presentation.dashboard.PhotoPlayBottomBar
 import uz.javokhirdev.photoplay.home.presentation.home.HomeScreen
 import uz.javokhirdev.photoplay.navigation.PhotoPlayNavigationActions
 import uz.javokhirdev.photoplay.navigation.Route
+import uz.javokhirdev.photoplay.profile.presentation.ProfileScreen
 import uz.javokhirdev.photoplay.ui.theme.CaloryTrackerTheme
 import javax.inject.Inject
 
@@ -94,6 +95,7 @@ class AppActivity : ComponentActivity() {
                             composable(DashboardSections.DOWNLOADS.route) {
                             }
                             composable(DashboardSections.PROFILE.route) {
+                                ProfileScreen()
                             }
                         }
                     }

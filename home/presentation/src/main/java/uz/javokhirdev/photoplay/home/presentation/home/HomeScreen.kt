@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
@@ -32,14 +33,13 @@ import uz.javokhirdev.photoplay.coreui.components.TextHeader
 @ExperimentalCoilApi
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
     val movie = uiState.randomMovie
 
-    PhotoPlaySurface(modifier = modifier.fillMaxSize()) {
+    PhotoPlaySurface(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
             item {
                 Column(
@@ -49,7 +49,8 @@ fun HomeScreen(
                     BottomGradientImage(imageUrl = movie?.imageUrl.orEmpty())
                     Text(
                         text = ((movie?.rating ?: 0f) * 2).toString(),
-                        style = MaterialTheme.typography.h2,
+                        style = MaterialTheme.typography.h1,
+                        fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colors.onBackground,
                         modifier = Modifier.padding(horizontal = 20.dp)
                     )
@@ -69,12 +70,8 @@ fun HomeScreen(
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                 }
-            }
-            item {
                 WatchingsForm(watchings = uiState.watchings.orEmpty())
-            }
-            item {
-                Spacer(modifier = Modifier.height(90.dp))
+                Spacer(modifier = Modifier.height(100.dp))
             }
         }
     }

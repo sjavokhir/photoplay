@@ -47,7 +47,7 @@ fun LoginScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Spacer(modifier = Modifier.height(90.dp))
-                        BigLogo()
+                        PhotoPlayLogo()
                         Spacer(modifier = Modifier.height(40.dp))
                         EmailInput(
                             email = uiState.email.orEmpty(),

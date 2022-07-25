@@ -64,9 +64,13 @@ dependencies {
     implementation(project(Modules.homePresentation))
     implementation(project(Modules.homeDomain))
     implementation(project(Modules.homeData))
+    implementation(project(Modules.profilePresentation))
+    implementation(project(Modules.profileDomain))
+    implementation(project(Modules.profileData))
 
     implementation(Compose.compiler)
     implementation(Compose.ui)
+    implementation(Compose.icons)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.hiltNavigationCompose)
     implementation(Compose.material)
