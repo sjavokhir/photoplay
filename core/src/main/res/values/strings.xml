@@ -4,6 +4,10 @@
     <string name="app_name">PhotoPlay</string>
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_password_hint">confirm password here</string>
+    <string name="dashboard_downloads">Downloads</string>
+    <string name="dashboard_home">Home</string>
+    <string name="dashboard_profile">Profile</string>
+    <string name="dashboard_search">Search</string>
     <string name="email">email</string>
     <string name="email_hint">email here</string>
     <string name="first_name">First name</string>
@@ -26,4 +30,5 @@
     <string name="send_email">Send email</string>
     <string name="send_email_description">Enter the email address you used to create your account and we will email you a link to reset your password</string>
     <string name="social_logins">Social Logins</string>
+    <string name="watching">Watching</string>
 </resources>

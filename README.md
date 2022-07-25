@@ -38,6 +38,15 @@ Login             |  Register | Forgot Password
 :-------------------------:|:-------------------------: | :-------------------------: 
 <img src="screenshots/screen01.png" width=240 />  |  <img src="screenshots/screen02.png" width=240 /> | <img src="screenshots/screen03.png" width=240 />
 
+Home             |  Search | Downloads
+:-------------------------:|:-------------------------: | :-------------------------: 
+<img src="screenshots/screen04.png" width=240 />  |  <img src="screenshots/screen05.png" width=240 /> | <img src="screenshots/screen06.png" width=240 />
+
+Profile             |  Movie details | Cast
+:-------------------------:|:-------------------------: | :-------------------------: 
+<img src="screenshots/screen07.png" width=240 />  |  <img src="screenshots/screen08.png" width=240 /> | <img src="screenshots/screen09.png" width=240 />
+
+
 ### Status: 🚧 In progress
 <p>PhotoPlay is still under development and more screens will be added.</p>
 

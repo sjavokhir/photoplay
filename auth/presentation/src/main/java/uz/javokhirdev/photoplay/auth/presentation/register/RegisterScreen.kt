@@ -16,19 +16,19 @@ import uz.javokhirdev.photoplay.core.R
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
 import uz.javokhirdev.photoplay.coreui.components.ActionButton
 import uz.javokhirdev.photoplay.coreui.components.BackButton
-import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
+import uz.javokhirdev.photoplay.coreui.components.PhotoPlayLogo
 
 @Composable
 fun RegisterScreen(
     viewModel: RegisterViewModel = hiltViewModel(),
     navigateUp: () -> Unit = {},
-    navigateToHome: () -> Unit = {}
+    navigateToDashboard: () -> Unit = {}
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
 
     if (uiState.isSuccess) {
-        navigateToHome()
+        navigateToDashboard()
     } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             item {
@@ -40,7 +40,7 @@ fun RegisterScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Spacer(modifier = Modifier.height(34.dp))
-                    BigImageLogo()
+                    PhotoPlayLogo()
                     Spacer(modifier = Modifier.height(spacing.spaceLarge))
                     TextInput(
                         text = uiState.firstName.orEmpty(),
@@ -85,7 +85,8 @@ fun RegisterScreen(
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     ActionButton(
                         title = stringResource(id = R.string.register),
-                        onClick = { viewModel.handleEvent(RegisterEvent.OnRegisterClick) }
+                        onClick = { viewModel.handleEvent(RegisterEvent.OnRegisterClick) },
+                        isLoading = uiState.isLoading
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                 }

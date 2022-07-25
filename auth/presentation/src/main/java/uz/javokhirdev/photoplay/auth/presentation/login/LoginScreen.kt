@@ -1,6 +1,5 @@
 package uz.javokhirdev.photoplay.auth.presentation.login
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,27 +10,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import uz.javokhirdev.photoplay.auth.presentation.components.EmailInput
 import uz.javokhirdev.photoplay.auth.presentation.components.PasswordInput
 import uz.javokhirdev.photoplay.core.R
+import uz.javokhirdev.photoplay.core.util.IMAGE_MOVIES
 import uz.javokhirdev.photoplay.coreui.Gray
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
-import uz.javokhirdev.photoplay.coreui.components.ActionButton
-import uz.javokhirdev.photoplay.coreui.components.BigImageLogo
-import uz.javokhirdev.photoplay.coreui.components.OvalButton
-import uz.javokhirdev.photoplay.coreui.components.TextButton
+import uz.javokhirdev.photoplay.coreui.components.*
 
+@ExperimentalCoilApi
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
-    navigateToHome: () -> Unit = {},
+    navigateToDashboard: () -> Unit = {},
     navigateToRegister: () -> Unit = {},
     navigateToForgotPassword: () -> Unit = {},
 ) {
@@ -39,29 +34,10 @@ fun LoginScreen(
     val uiState = viewModel.uiState.collectAsState().value
 
     if (uiState.isSuccess) {
-        navigateToHome()
+        navigateToDashboard()
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
-            Image(
-                painter = painterResource(R.drawable.image_movies),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.height(480.dp)
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(480.dp)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            listOf(
-                                Color.Transparent,
-                                MaterialTheme.colors.background.copy(0.25f),
-                                MaterialTheme.colors.background
-                            )
-                        )
-                    )
-            )
+            BottomGradientImage(imageUrl = IMAGE_MOVIES)
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 item {
                     Column(
@@ -71,7 +47,7 @@ fun LoginScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Spacer(modifier = Modifier.height(90.dp))
-                        BigImageLogo()
+                        PhotoPlayLogo()
                         Spacer(modifier = Modifier.height(40.dp))
                         EmailInput(
                             email = uiState.email.orEmpty(),

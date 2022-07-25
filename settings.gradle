@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 rootProject.name = "photoplay"
@@ -21,3 +24,18 @@ include ":auth"
 include ":auth:data"
 include ":auth:domain"
 include ":auth:presentation"
+
+include ":home"
+include ":home:data"
+include ":home:domain"
+include ":home:presentation"
+
+include ":profile"
+include ":profile:data"
+include ":profile:domain"
+include ":profile:presentation"
+
+include ":downloads"
+include ":downloads:data"
+include ":downloads:domain"
+include ":downloads:presentation"

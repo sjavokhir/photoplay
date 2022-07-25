@@ -45,11 +45,35 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
+
+    sourceSets {
+        getByName("main") {
+            assets {
+                srcDirs("src/main/assets")
+            }
+        }
+    }
 }
 
 dependencies {
+    implementation(project(Modules.core))
+    implementation(project(Modules.coreUi))
+    implementation(project(Modules.authPresentation))
+    implementation(project(Modules.authDomain))
+    implementation(project(Modules.authData))
+    implementation(project(Modules.homePresentation))
+    implementation(project(Modules.homeDomain))
+    implementation(project(Modules.homeData))
+    implementation(project(Modules.profilePresentation))
+    implementation(project(Modules.profileDomain))
+    implementation(project(Modules.profileData))
+    implementation(project(Modules.downloadsPresentation))
+    implementation(project(Modules.downloadsDomain))
+    implementation(project(Modules.downloadsData))
+
     implementation(Compose.compiler)
     implementation(Compose.ui)
+    implementation(Compose.icons)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.hiltNavigationCompose)
     implementation(Compose.material)
@@ -58,19 +82,13 @@ dependencies {
     implementation(Compose.viewModelCompose)
     implementation(Compose.activityCompose)
 
-    implementation(DaggerHilt.hiltAndroid)
-    kapt(DaggerHilt.hiltCompiler)
-
-    implementation(project(Modules.core))
-    implementation(project(Modules.coreUi))
-    implementation(project(Modules.authPresentation))
-    implementation(project(Modules.authDomain))
-    implementation(project(Modules.authData))
-
     implementation(Android.coreKtx)
     implementation(Android.appCompat)
 
-    implementation(Coil.coilCompose)
-
     implementation(Google.material)
+
+    implementation(DaggerHilt.hiltAndroid)
+    kapt(DaggerHilt.hiltCompiler)
+
+    implementation(Coil.coilCompose)
 }
