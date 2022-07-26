@@ -8,8 +8,7 @@ object Route {
     const val FORGOT_PASSWORD = "forgot_password"
 
     const val DASHBOARD = "dashboard"
-    const val MOVIE_DETAILS = "movie_details"
-    const val TV_SHOW_DETAILS = "tv_show_details"
+    const val MOVIE_DETAIL = "movie_detail"
     const val CAST = "cast"
 }
 
@@ -32,6 +31,16 @@ class PhotoPlayNavigationActions(navController: NavHostController) {
             popUpTo(Route.REGISTER) {
                 inclusive = true
             }
+        }
+    }
+    val navigateToMovieDetail = { movieId: Int? ->
+        navController.navigate("${Route.MOVIE_DETAIL}/$movieId") {
+            launchSingleTop = true
+        }
+    }
+    val navigateToCast = { castId: Int? ->
+        navController.navigate("${Route.CAST}/$castId") {
+            launchSingleTop = true
         }
     }
 }

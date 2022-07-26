@@ -2,6 +2,7 @@
 <resources>
     <string name="add_profile_picture">Add profile picture</string>
     <string name="app_name">PhotoPlay</string>
+    <string name="cast">Cast</string>
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_password_hint">confirm password here</string>
     <string name="dashboard_downloads">Downloads</string>
@@ -15,10 +16,12 @@
     <string name="forgot">Forgot?</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="have_an_account">Don\'t have an account?</string>
+    <string name="known_for">Known for</string>
     <string name="last_name">Last name</string>
     <string name="last_name_hint">last name here</string>
     <string name="loading">Loading…</string>
     <string name="login">Login</string>
+    <string name="no_results">No results</string>
     <string name="password">password</string>
     <string name="password_hint">password here</string>
     <string name="password_requirement_capital">At least 1 upper-case letter</string>
@@ -27,8 +30,10 @@
     <string name="password_requirement_needed">%s, needed</string>
     <string name="password_requirement_satisfied">%s, satisfied</string>
     <string name="register">Register</string>
+    <string name="search">Search</string>
     <string name="send_email">Send email</string>
     <string name="send_email_description">Enter the email address you used to create your account and we will email you a link to reset your password</string>
     <string name="social_logins">Social Logins</string>
+    <string name="watch_now">Watch now</string>
     <string name="watching">Watching</string>
 </resources>

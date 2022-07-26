@@ -66,6 +66,7 @@ fun ForgotPasswordScreen(
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     ActionButton(
+                        modifier = Modifier.fillMaxWidth(),
                         title = stringResource(id = R.string.send_email),
                         onClick = { viewModel.handleEvent(ForgotEvent.OnSendClick) },
                         isLoading = uiState.isLoading

@@ -58,18 +58,37 @@ android {
 dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.coreUi))
-    implementation(project(Modules.authPresentation))
-    implementation(project(Modules.authDomain))
+
     implementation(project(Modules.authData))
-    implementation(project(Modules.homePresentation))
-    implementation(project(Modules.homeDomain))
+    implementation(project(Modules.authDomain))
+    implementation(project(Modules.authPresentation))
+
     implementation(project(Modules.homeData))
-    implementation(project(Modules.profilePresentation))
-    implementation(project(Modules.profileDomain))
-    implementation(project(Modules.profileData))
-    implementation(project(Modules.downloadsPresentation))
-    implementation(project(Modules.downloadsDomain))
+    implementation(project(Modules.homeDomain))
+    implementation(project(Modules.homePresentation))
+
+    implementation(project(Modules.searchData))
+    implementation(project(Modules.searchDomain))
+    implementation(project(Modules.searchPresentation))
+
     implementation(project(Modules.downloadsData))
+    implementation(project(Modules.downloadsDomain))
+    implementation(project(Modules.downloadsPresentation))
+
+    implementation(project(Modules.profileData))
+    implementation(project(Modules.profileDomain))
+    implementation(project(Modules.profilePresentation))
+
+    implementation(project(Modules.movieDetailData))
+    implementation(project(Modules.movieDetailDomain))
+    implementation(project(Modules.movieDetailPresentation))
+
+    implementation(project(Modules.castData))
+    implementation(project(Modules.castDomain))
+    implementation(project(Modules.castPresentation))
+
+    implementation(Android.coreKtx)
+    implementation(Android.appCompat)
 
     implementation(Compose.compiler)
     implementation(Compose.ui)
@@ -81,9 +100,6 @@ dependencies {
     implementation(Compose.navigation)
     implementation(Compose.viewModelCompose)
     implementation(Compose.activityCompose)
-
-    implementation(Android.coreKtx)
-    implementation(Android.appCompat)
 
     implementation(Google.material)
 

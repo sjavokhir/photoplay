@@ -4,21 +4,25 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.javokhirdev.photoplay.core.R
@@ -34,7 +38,7 @@ fun ActionButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
         enabled = !isLoading,
@@ -80,18 +84,41 @@ fun TextButton(
 
 @Composable
 fun OvalButton(
-    @DrawableRes iconRes: Int,
     modifier: Modifier = Modifier,
+    @DrawableRes iconRes: Int,
+    size: Dp = 42.dp,
     onClick: () -> Unit = {}
 ) {
     IconButton(onClick = onClick) {
         Box(
             modifier = modifier
-                .size(42.dp)
+                .size(size)
                 .paint(
                     painterResource(id = iconRes),
                     contentScale = ContentScale.Fit
                 )
+        )
+    }
+}
+
+@Composable
+fun OvalButton(
+    modifier: Modifier = Modifier,
+    vector: ImageVector,
+    size: Dp = 42.dp,
+    onClick: () -> Unit = {}
+) {
+    IconButton(
+        onClick = onClick,
+        modifier = modifier
+            .then(Modifier.size(size))
+            .clip(CircleShape)
+    ) {
+        Icon(
+            imageVector = vector,
+            contentDescription = "",
+            modifier = Modifier.size(size),
+            tint = MaterialTheme.colors.primary
         )
     }
 }

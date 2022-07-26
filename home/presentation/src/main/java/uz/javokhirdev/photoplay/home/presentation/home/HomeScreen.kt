@@ -1,6 +1,7 @@
 package uz.javokhirdev.photoplay.home.presentation.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -19,58 +20,50 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.gowtham.ratingbar.RatingBar
-import com.gowtham.ratingbar.RatingBarConfig
-import com.gowtham.ratingbar.RatingBarStyle
 import uz.javokhirdev.photoplay.core.R
 import uz.javokhirdev.photoplay.core.domain.model.Movie
 import uz.javokhirdev.photoplay.coreui.LocalSpacing
-import uz.javokhirdev.photoplay.coreui.components.BottomGradientImage
-import uz.javokhirdev.photoplay.coreui.components.GenresForm
-import uz.javokhirdev.photoplay.coreui.components.PhotoPlaySurface
-import uz.javokhirdev.photoplay.coreui.components.TextHeader
+import uz.javokhirdev.photoplay.coreui.components.*
 
 @ExperimentalCoilApi
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    navigateToMovieDetail: (Int?) -> Unit
 ) {
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
     val movie = uiState.randomMovie
 
     PhotoPlaySurface(modifier = Modifier.fillMaxSize()) {
-        LazyColumn {
+        LazyColumn(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
             item {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    BottomGradientImage(imageUrl = movie?.imageUrl.orEmpty())
-                    Text(
-                        text = ((movie?.rating ?: 0f) * 2).toString(),
-                        style = MaterialTheme.typography.h1,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.onBackground,
-                        modifier = Modifier.padding(horizontal = 20.dp)
-                    )
-                    Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                    RatingBar(
-                        value = movie?.rating ?: 0f,
-                        config = RatingBarConfig()
-                            .style(RatingBarStyle.HighLighted),
-                        onValueChange = {},
-                        onRatingChanged = {},
-                        modifier = Modifier.padding(horizontal = 20.dp)
-                    )
-                    Spacer(modifier = Modifier.height(spacing.spaceNormal))
-                    GenresForm(
-                        modifier = Modifier.padding(horizontal = 20.dp),
-                        genres = movie?.genres.orEmpty()
-                    )
-                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                }
-                WatchingsForm(watchings = uiState.watchings.orEmpty())
+                BottomGradientImage(imageUrl = movie?.imageUrl.orEmpty())
+                Text(
+                    text = ((movie?.rating ?: 0f) * 2).toString(),
+                    style = MaterialTheme.typography.h1,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.onBackground,
+                    modifier = Modifier.padding(horizontal = 20.dp)
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                RatingBar(
+                    rating = movie?.rating,
+                    modifier = Modifier.padding(horizontal = 20.dp)
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceNormal))
+                GenresForm(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    genres = movie?.genres.orEmpty()
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                WatchingsForm(
+                    watchings = uiState.watchings.orEmpty(),
+                    onMovieClick = navigateToMovieDetail
+                )
                 Spacer(modifier = Modifier.height(100.dp))
             }
         }
@@ -81,7 +74,8 @@ fun HomeScreen(
 @Composable
 fun WatchingsForm(
     modifier: Modifier = Modifier,
-    watchings: List<Movie> = emptyList()
+    watchings: List<Movie> = emptyList(),
+    onMovieClick: (Int?) -> Unit
 ) {
     val spacing = LocalSpacing.current
 
@@ -107,6 +101,7 @@ fun WatchingsForm(
                         .width(96.dp)
                         .height(127.dp)
                         .clip(MaterialTheme.shapes.small)
+                        .clickable { onMovieClick(it.id) }
                 )
                 Spacer(modifier = Modifier.width(20.dp))
             }

@@ -16,9 +16,7 @@ object HomeDomainModule {
 
     @ViewModelScoped
     @Provides
-    fun provideHomeUseCases(
-        repository: HomeRepository,
-    ): HomeUseCases {
+    fun provideHomeUseCases(repository: HomeRepository): HomeUseCases {
         return HomeUseCases(
             getRandomMovie = GetRandomMovie(repository),
             getWatchings = GetWatchings(repository),

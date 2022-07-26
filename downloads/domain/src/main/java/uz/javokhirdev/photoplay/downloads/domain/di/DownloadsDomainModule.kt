@@ -15,9 +15,7 @@ object DownloadsDomainModule {
 
     @ViewModelScoped
     @Provides
-    fun provideHomeUseCases(
-        repository: DownloadsRepository,
-    ): DownloadsUseCases {
+    fun provideDownloadsUseCases(repository: DownloadsRepository): DownloadsUseCases {
         return DownloadsUseCases(
             getDownloads = GetDownloads(repository)
         )
