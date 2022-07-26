@@ -29,7 +29,7 @@ class MovieDetailViewModel @Inject constructor(
         movieId ?: return
 
         viewModelScope.launch {
-            movieDetailUseCases.getMovie.invoke(movieId)
+            movieDetailUseCases.getMovie(movieId)
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         movie = it
@@ -40,7 +40,7 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun getActors() {
         viewModelScope.launch {
-            movieDetailUseCases.getActors.invoke()
+            movieDetailUseCases.getActors()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         actors = it

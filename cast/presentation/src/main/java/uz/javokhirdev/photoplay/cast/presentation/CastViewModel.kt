@@ -29,7 +29,7 @@ class CastViewModel @Inject constructor(
         actorId ?: return
 
         viewModelScope.launch {
-            castUseCases.getActor.invoke(actorId)
+            castUseCases.getActor(actorId)
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         actor = it
@@ -40,7 +40,7 @@ class CastViewModel @Inject constructor(
 
     private fun getMovies() {
         viewModelScope.launch {
-            castUseCases.getKnownFor.invoke()
+            castUseCases.getKnownFor()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         movies = it

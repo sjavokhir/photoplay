@@ -35,7 +35,7 @@ fun DownloadsScreen(
     PhotoPlaySurface(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
             item {
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
             }
             items(uiState.downloads.orEmpty()) {
                 DownloadItem(

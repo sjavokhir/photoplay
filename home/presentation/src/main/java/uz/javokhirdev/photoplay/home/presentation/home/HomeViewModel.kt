@@ -19,13 +19,14 @@ class HomeViewModel @Inject constructor(
 
     init {
         preferences.saveShouldShowLogin(false)
+
         getRandomMovie()
         getWatchings()
     }
 
     private fun getRandomMovie() {
         viewModelScope.launch {
-            homeUseCases.getRandomMovie.invoke()
+            homeUseCases.getRandomMovie()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         randomMovie = it
@@ -36,7 +37,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getWatchings() {
         viewModelScope.launch {
-            homeUseCases.getWatchings.invoke()
+            homeUseCases.getWatchings()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         watchings = it

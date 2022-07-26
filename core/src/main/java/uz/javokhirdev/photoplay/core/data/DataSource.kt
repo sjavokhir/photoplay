@@ -2,6 +2,7 @@ package uz.javokhirdev.photoplay.core.data
 
 import uz.javokhirdev.photoplay.core.domain.model.Actor
 import uz.javokhirdev.photoplay.core.domain.model.Download
+import uz.javokhirdev.photoplay.core.domain.model.GroupMovie
 import uz.javokhirdev.photoplay.core.domain.model.Movie
 
 object DataSource {
@@ -9,6 +10,17 @@ object DataSource {
     fun getWatchings(): List<Movie> = movies
     fun getDownloads(): List<Download> = downloads
     fun getActors(): List<Actor> = actors
+
+    fun getSearch(): List<GroupMovie> {
+        val series = movies.subList(0, 1)
+        val movies = movies.shuffled().subList(0, 3)
+        val searchList = ArrayList<GroupMovie>().apply {
+            add(GroupMovie("TV Shows", series))
+            add(GroupMovie("Movies", movies))
+        }
+
+        return searchList
+    }
 
     private val movies = arrayListOf(
         Movie(

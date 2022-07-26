@@ -32,11 +32,12 @@ import uz.javokhirdev.photoplay.moviedetail.presentation.MovieDetailScreen
 import uz.javokhirdev.photoplay.navigation.PhotoPlayNavigationActions
 import uz.javokhirdev.photoplay.navigation.Route
 import uz.javokhirdev.photoplay.profile.presentation.ProfileScreen
+import uz.javokhirdev.photoplay.search.presentation.SearchScreen
 import uz.javokhirdev.photoplay.ui.theme.CaloryTrackerTheme
 import javax.inject.Inject
 
-@ExperimentalComposeUiApi
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class AppActivity : ComponentActivity() {
 
@@ -100,6 +101,7 @@ class AppActivity : ComponentActivity() {
                                 )
                             }
                             composable(DashboardSections.SEARCH.route) {
+                                SearchScreen()
                             }
                             composable(DashboardSections.DOWNLOADS.route) {
                                 DownloadsScreen(
@@ -113,10 +115,7 @@ class AppActivity : ComponentActivity() {
                         composable(
                             route = "${Route.MOVIE_DETAIL}/{$MOVIE_ID_KEY}",
                             arguments = listOf(navArgument(MOVIE_ID_KEY) { type = NavType.IntType })
-                        ) { from ->
-                            val arguments = requireNotNull(from.arguments)
-                            val movieId = arguments.getInt(MOVIE_ID_KEY)
-
+                        ) {
                             MovieDetailScreen(
                                 navigateUp = { navController.navigateUp() },
                                 navigateToCast = navActions.navigateToCast
@@ -125,11 +124,10 @@ class AppActivity : ComponentActivity() {
                         composable(
                             route = "${Route.CAST}/{$CAST_ID_KEY}",
                             arguments = listOf(navArgument(CAST_ID_KEY) { type = NavType.IntType })
-                        ) { from ->
-                            val arguments = requireNotNull(from.arguments)
-                            val castId = arguments.getInt(CAST_ID_KEY)
-
-                            CastScreen { navController.navigateUp() }
+                        ) {
+                            CastScreen(
+                                navigateUp = { navController.navigateUp() },
+                            )
                         }
                     }
                 }

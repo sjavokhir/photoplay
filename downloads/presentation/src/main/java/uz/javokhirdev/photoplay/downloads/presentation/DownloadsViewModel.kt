@@ -21,7 +21,7 @@ class DownloadsViewModel @Inject constructor(
 
     private fun getDownloads() {
         viewModelScope.launch {
-            downloadsUseCases.getDownloads.invoke()
+            downloadsUseCases.getDownloads()
                 .onSuccess {
                     uiState.value = uiState.value.copy(
                         downloads = it
