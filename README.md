@@ -1,6 +1,16 @@
-# PhotoPlay
+# **PhotoPlay**
 
 A movie and TV Show streaming mobile app in Android built using Jetpack compose.
+
+This project is developed by **Javokhir Savriev** for more projects [GitHub](https://github.com/javokhirsavriev/) .
+
+## Application Install
+
+***You can Install and test latest PhotoPlay app from below 👇***
+
+[![PhotoPlay](https://img.shields.io/badge/PhotoPlay✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/javokhirsavriev/photoplay/releases/download/v1.0.0/photoplay.apk)
+
+## About
 
 <div align="left">
     <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#may_5_2021">
@@ -28,12 +38,15 @@ A movie and TV Show streaming mobile app in Android built using Jetpack compose.
 
 ### This sample app showcases the following:
 
+* Clean and Simple UI with Jetpack Compose
+* Best and Clean Code Quality following Modern Android Development
 * MVI Architecture (ViewModel + MutableState + StateFlow)
 * Dagger Hilt for DI
 * Compose BottomSheetScaffold
 * Compose ConstraintLayout
 
-### Screens
+## 📸 Screens
+
 Login             |  Register | Forgot Password
 :-------------------------:|:-------------------------: | :-------------------------: 
 <img src="screenshots/screen01.png" width=240 />  |  <img src="screenshots/screen02.png" width=240 /> | <img src="screenshots/screen03.png" width=240 />
@@ -47,10 +60,11 @@ Profile             |  Movie details | Cast
 <img src="screenshots/screen07.png" width=240 />  |  <img src="screenshots/screen08.png" width=240 /> | <img src="screenshots/screen09.png" width=240 />
 
 
-### Status: 🚧 In progress
+## Status: 🚧 In progress
+
 <p>PhotoPlay is still under development and more screens will be added.</p>
 
-### Libraries used
+## Built With 🛠
 
 * [Jetpack Compose]
 * [Accompanist]
@@ -66,27 +80,10 @@ Profile             |  Movie details | Cast
 [Compose Navigation]: https://developer.android.com/jetpack/compose/navigation
 [Coil]: https://coil-kt.github.io/coil/compose/
 
-### License
-```
-MIT License
+## If you like my projects you can buy me a cup of coffee
 
-Copyright (c) 2022 Javokhir
+<a href="https://www.buymeacoffee.com/sjavokhir"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=VaibhavJaiswal&button_colour=FFBB3B&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Contact
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+You can connect with me here [LinkedIn](https://www.linkedin.com/in/sjavokhir/)
