@@ -31,13 +31,10 @@ import uz.javokhirdev.photoplay.coreui.components.*
 @ExperimentalCoilApi
 @Composable
 fun MovieDetailScreen(
-    movieId: Int? = null,
     viewModel: MovieDetailViewModel = hiltViewModel(),
     navigateUp: () -> Unit,
     navigateToCast: (Int?) -> Unit
 ) {
-    viewModel.getMovie(movieId)
-
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
     val movie = uiState.movie

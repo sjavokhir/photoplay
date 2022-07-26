@@ -12,11 +12,6 @@ object Route {
     const val CAST = "cast"
 }
 
-object Params {
-    const val MOVIE_ID_KEY = "movie_id"
-    const val CAST_ID_KEY = "cast_id"
-}
-
 class PhotoPlayNavigationActions(navController: NavHostController) {
     val navigateToRegister: () -> Unit = {
         navController.navigate(Route.REGISTER)

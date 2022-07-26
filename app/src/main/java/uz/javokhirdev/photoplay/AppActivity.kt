@@ -22,14 +22,13 @@ import uz.javokhirdev.photoplay.auth.presentation.login.LoginScreen
 import uz.javokhirdev.photoplay.auth.presentation.register.RegisterScreen
 import uz.javokhirdev.photoplay.cast.presentation.CastScreen
 import uz.javokhirdev.photoplay.core.domain.preferences.Preferences
-import uz.javokhirdev.photoplay.core.extensions.logd
+import uz.javokhirdev.photoplay.core.util.Extras.CAST_ID_KEY
+import uz.javokhirdev.photoplay.core.util.Extras.MOVIE_ID_KEY
 import uz.javokhirdev.photoplay.downloads.presentation.DownloadsScreen
 import uz.javokhirdev.photoplay.home.presentation.dashboard.DashboardSections
 import uz.javokhirdev.photoplay.home.presentation.dashboard.PhotoPlayBottomBar
 import uz.javokhirdev.photoplay.home.presentation.home.HomeScreen
 import uz.javokhirdev.photoplay.moviedetail.presentation.MovieDetailScreen
-import uz.javokhirdev.photoplay.navigation.Params.CAST_ID_KEY
-import uz.javokhirdev.photoplay.navigation.Params.MOVIE_ID_KEY
 import uz.javokhirdev.photoplay.navigation.PhotoPlayNavigationActions
 import uz.javokhirdev.photoplay.navigation.Route
 import uz.javokhirdev.photoplay.profile.presentation.ProfileScreen
@@ -119,7 +118,6 @@ class AppActivity : ComponentActivity() {
                             val movieId = arguments.getInt(MOVIE_ID_KEY)
 
                             MovieDetailScreen(
-                                movieId = movieId,
                                 navigateUp = { navController.navigateUp() },
                                 navigateToCast = navActions.navigateToCast
                             )
@@ -131,10 +129,7 @@ class AppActivity : ComponentActivity() {
                             val arguments = requireNotNull(from.arguments)
                             val castId = arguments.getInt(CAST_ID_KEY)
 
-                            CastScreen(
-                                castId = castId,
-                                navigateUp = { navController.navigateUp() }
-                            )
+                            CastScreen { navController.navigateUp() }
                         }
                     }
                 }

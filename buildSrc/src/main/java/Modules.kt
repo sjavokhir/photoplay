@@ -10,13 +10,17 @@ object Modules {
     const val homeDomain = ":home:domain"
     const val homePresentation = ":home:presentation"
 
-    const val profileData = ":profile:data"
-    const val profileDomain = ":profile:domain"
-    const val profilePresentation = ":profile:presentation"
+    const val searchData = ":search:data"
+    const val searchDomain = ":search:domain"
+    const val searchPresentation = ":search:presentation"
 
     const val downloadsData = ":downloads:data"
     const val downloadsDomain = ":downloads:domain"
     const val downloadsPresentation = ":downloads:presentation"
+
+    const val profileData = ":profile:data"
+    const val profileDomain = ":profile:domain"
+    const val profilePresentation = ":profile:presentation"
 
     const val movieDetailData = ":movie-detail:data"
     const val movieDetailDomain = ":movie-detail:domain"

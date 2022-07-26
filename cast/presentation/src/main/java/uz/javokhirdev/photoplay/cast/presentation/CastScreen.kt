@@ -31,12 +31,9 @@ import uz.javokhirdev.photoplay.coreui.components.TextHeader
 @ExperimentalCoilApi
 @Composable
 fun CastScreen(
-    castId: Int? = null,
     viewModel: CastViewModel = hiltViewModel(),
     navigateUp: () -> Unit
 ) {
-    viewModel.getActor(castId)
-
     val spacing = LocalSpacing.current
     val uiState = viewModel.uiState.collectAsState().value
     val actor = uiState.actor
